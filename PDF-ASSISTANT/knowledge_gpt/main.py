@@ -1,6 +1,6 @@
 import streamlit as st
 from components.sidebar import sidebar
-from openai.error import OpenAIError
+import openai
 from utils import (
     embed_docs,
     get_answer,
@@ -90,5 +90,6 @@ if button or st.session_state.get("submit"):
                     st.markdown(source.metadata["source"])
                     st.markdown("---")
 
-        except OpenAIError as e:
-            st.error(e._message)
+        except openai.OpenAIError as e:
+            st.error(e)
+
